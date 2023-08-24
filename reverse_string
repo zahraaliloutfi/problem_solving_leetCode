@@ -1,1 +1,41 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void reverseString(vector<char>& s) {
+    int left = 0;
+    int right = s.size() - 1;
+
+    while (left < right) {
+        // Swap characters at left and right positions
+        char temp = s[left];
+        s[left] = s[right];
+        s[right] = temp;
+
+        
+        left++;
+        right--;
+    }
+}
+
+int main() {
+    cout << "Enter a string: ";
+    string input;
+    cin >> input;
+
+    vector<char> s(input.begin(), input.end()); // Convert the input string to a vector of characters
+    reverseString(s);
+
+    cout << "Reversed vector: [";
+    for (size_t i = 0; i < s.size(); ++i) {
+        cout << '"' << s[i] << '"';
+        if (i < s.size() - 1) {
+            cout << ',';
+        }
+    }
+    cout << ']' << endl;
+
+    return 0;
+}
 
