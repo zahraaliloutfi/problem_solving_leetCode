@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool canConstruct(string ransomNote, string magazine) {
+    vector<int> ransomNoteFreq(26, 0); // Initialize an array of size 26 with zeros
+    vector<int> magazineFreq(26, 0);   // Initialize an array of size 26 with zeros
+
+    // Count character frequencies in ransomNote
+    for (char c : ransomNote) {
+        ransomNoteFreq[c - 'a']++;
+    }
+
+    // Count character frequencies in magazine
+    for (char c : magazine) {
+        magazineFreq[c - 'a']++;
+    }
+
+    // Check if we can form ransomNote from magazine
+    for (int i = 0; i < 26; i++) {
+        if (ransomNoteFreq[i] > magazineFreq[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    cout << boolalpha; // Print "true" or "false" instead of 1 or 0
+    cout << canConstruct("a", "b") << endl;      // Output: false
+    cout << canConstruct("aa", "ab") << endl;    // Output: false
+    cout << canConstruct("aa", "aab") << endl;   // Output: true
+
+    return 0;
+}
