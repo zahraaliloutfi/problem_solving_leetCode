@@ -1,0 +1,43 @@
+#include <iostream>
+#include <climits> // Include this header for INT_MAX
+using namespace std;
+
+int maxNumberOfBalloons(string text) {
+    int b_count = 0;
+    int a_count = 0;
+    int l_count = 0;
+    int o_count = 0;
+    int n_count = 0;
+
+    for (char c : text) {
+        if (c == 'b') {
+            b_count++;
+        } else if (c == 'a') {
+            a_count++;
+        } else if (c == 'l') {
+            l_count++;
+        } else if (c == 'o') {
+            o_count++;
+        } else if (c == 'n') {
+            n_count++;
+        }
+    }
+
+    // Calculate the maximum number of "balloon" instances
+    int maxInstances = INT_MAX; // Initialize with a large value
+    maxInstances = min(maxInstances, b_count);
+    maxInstances = min(maxInstances, a_count);
+    maxInstances = min(maxInstances, l_count / 2);
+    maxInstances = min(maxInstances, o_count / 2);
+    maxInstances = min(maxInstances, n_count);
+
+    return maxInstances;
+}
+
+int main() {
+    cout << maxNumberOfBalloons("nlaebolko") << endl;       // Output: 1
+    cout << maxNumberOfBalloons("loonbalxballpoon") << endl; // Output: 2
+    cout << maxNumberOfBalloons("leetcode") << endl;         // Output: 0
+
+    return 0;
+}
