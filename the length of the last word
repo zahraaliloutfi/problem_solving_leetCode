@@ -1,1 +1,37 @@
+#include <iostream>
+#include <string>
+
+int lengthOfLastWord(std::string s) {
+    int length = 0;
+    int i = s.length() - 1;
+
+    // Skip trailing spaces
+    while (i >= 0 && s[i] == ' ') {
+        i--;
+    }
+
+    // Count characters of the last word
+    while (i >= 0 && s[i] != ' ') {
+        length++;
+        i--;
+    }
+
+    return length;
+}
+
+int main() {
+    std::string s1 = "Hello World";
+    int result1 = lengthOfLastWord(s1);
+    std::cout << result1 << std::endl;  // Output: 5
+
+    std::string s2 = "   fly me   to   the moon  ";
+    int result2 = lengthOfLastWord(s2);
+    std::cout << result2 << std::endl;  // Output: 4
+
+    std::string s3 = "luffy is still joyboy";
+    int result3 = lengthOfLastWord(s3);
+    std::cout << result3 << std::endl;  // Output: 6
+
+    return 0;
+}
 
