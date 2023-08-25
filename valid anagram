@@ -1,1 +1,46 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+bool isAnagram(std::string s, std::string t) {
+    if (s.length() != t.length()) {
+        return false; // If lengths are different, they can't be anagrams.
+    }
+
+    // Initialize an array to keep track of character frequencies.
+    std::vector<int> charCount(26, 0);
+
+    // Count the frequency of characters in string s.
+    for (char c : s) {
+        charCount[c - 'a']++;
+    }
+
+    // Decrement the frequency of characters in string t.
+    for (char c : t) {
+        charCount[c - 'a']--;
+    }
+
+    // If all frequencies are zero, s and t are anagrams.
+    for (int count : charCount) {
+        if (count != 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    std::string s1 = "anagram";
+    std::string t1 = "nagaram";
+    bool result1 = isAnagram(s1, t1);
+    std::cout << std::boolalpha << result1 << std::endl;  // Output: true
+
+    std::string s2 = "rat";
+    std::string t2 = "car";
+    bool result2 = isAnagram(s2, t2);
+    std::cout << std::boolalpha << result2 << std::endl;  // Output: false
+
+    return 0;
+}
 
